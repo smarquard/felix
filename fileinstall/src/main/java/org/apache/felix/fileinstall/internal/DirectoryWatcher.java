@@ -530,6 +530,10 @@ public class DirectoryWatcher extends Thread implements BundleListener
     ArtifactListener findListener(File artifact, List<ArtifactListener> listeners)
     {
         for (ArtifactListener listener : listeners) {
+            if (listener == null) {
+                log(Logger.LOG_ERROR, "null listener in listeners list", null);
+                continue;
+            }
             if (listener.canHandle(artifact)) {
                 return listener;
             }

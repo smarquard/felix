@@ -269,6 +269,12 @@ public class FileInstall implements BundleActivator, ServiceTrackerCustomizer
 
     private void addListener(ServiceReference reference, ArtifactListener listener)
     {
+
+        if (listener == null) {
+            Util.log(context, Logger.LOG_ERROR, "addListener() got null listener", null);
+            return;
+        }
+
         synchronized (listeners)
         {
             listeners.put(reference, listener);
